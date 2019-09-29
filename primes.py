@@ -1,6 +1,6 @@
 def is_prime(number):
     """Return True if *number* is prime."""
-    if number in (0, 1):
+    if number < 2:
         return False
 
     for element in range(2, number):
