@@ -17,6 +17,9 @@ class PrimesTestCase(unittest.TestCase):
         """Is zero correctly determined not to be prime?"""
         self.assertFalse(is_prime(0))
 
+    def test_negative_is_not_prime(self):
+        self.assertFalse(is_prime(-1))
+
 
 if __name__ == '__main__':
     unittest.main()
