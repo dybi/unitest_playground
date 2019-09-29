@@ -13,6 +13,10 @@ class PrimesTestCase(unittest.TestCase):
         """Is four correctly determined not to be prime?"""
         self.assertFalse(is_prime(4), msg='Four is not prime!')
 
+    def test_is_zero_not_prime(self):
+        """Is zero correctly determined not to be prime?"""
+        self.assertFalse(is_prime(0))
+
 
 if __name__ == '__main__':
     unittest.main()
