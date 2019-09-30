@@ -1,5 +1,5 @@
 from unittest import TestCase
-from unittest.mock import Mock, PropertyMock
+from unittest.mock import Mock, PropertyMock, patch
 
 from entities import Account, User, TransferImpossible, make_money_transfer
 
@@ -30,6 +30,12 @@ class TestAccount(TestCase):
         account = Account()
         with self.assertRaises(ValueError):
             account.balance -= 1
+
+    def test_id_is_generated_properly(self):
+        generated_id = 777
+        with patch('entities.randint', return_value=generated_id):
+            account = Account()
+            self.assertEqual(account.get_id(), generated_id)
 
 
 class TestMakeMoneyTransfer(TestCase):
