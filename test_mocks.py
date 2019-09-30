@@ -1,5 +1,5 @@
 from unittest import TestCase
-from unittest.mock import Mock
+from unittest.mock import Mock, PropertyMock
 
 from entities import Account, User
 
@@ -7,9 +7,9 @@ from entities import Account, User
 class TestUser(TestCase):
     def test_give_me_the_money_should_return_available_funds_from_all_accounts(self):
         account_1 = Mock()
-        account_1.balance.return_value = 50
+        type(account_1).balance = PropertyMock(return_value=50)
         account_2 = Mock()
-        account_2.balance.return_value = 100
+        type(account_2).balance = PropertyMock(return_value=100)
 
         user = User("Janusz", 40, [account_1, account_2])
 
