@@ -25,3 +25,8 @@ class TestAccount(TestCase):
         account.transfer(other_account, yogurt_price)
 
         other_account.add_funds.assert_called_once_with(yogurt_price)
+
+    def test_setting_balance_below_zero_should_raise_value_error(self):
+        account = Account()
+        with self.assertRaises(ValueError):
+            account.balance -= 1
