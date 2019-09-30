@@ -2,9 +2,20 @@ from random import randint
 from typing import List, Optional
 
 
+class TransferImpossible(Exception):
+    pass
+
+
 def generate_id() -> int:
     # return some number, let's assume some complicated calculations
     return randint(0, 999)
+
+
+def make_money_transfer(from_: 'Account', to: 'Account', value: float) -> None:
+    try:
+        from_.transfer(to, value)
+    except Exception:
+        raise TransferImpossible
 
 
 class Account:

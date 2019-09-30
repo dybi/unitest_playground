@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import Mock, PropertyMock
 
-from entities import Account, User
+from entities import Account, User, TransferImpossible, make_money_transfer
 
 
 class TestUser(TestCase):
@@ -30,3 +30,13 @@ class TestAccount(TestCase):
         account = Account()
         with self.assertRaises(ValueError):
             account.balance -= 1
+
+
+class TestMakeMoneyTransfer(TestCase):
+    def test_should_raise_transfer_impossible_when_transfer_fails(self):
+        account_1 = Mock()
+        account_1.transfer.side_effect = TransferImpossible
+        account_2 = Mock()
+
+        with self.assertRaises(TransferImpossible):
+            make_money_transfer(account_1, account_2, 100)
