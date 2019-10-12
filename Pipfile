@@ -8,8 +8,8 @@ verify_ssl = true
 [packages]
 pytest = "*"
 coverage = "*"
-parameterized = "*"
 pytest-cov = "*"
+parameterized = "*"
 
 [requires]
 python_version = "3.7"

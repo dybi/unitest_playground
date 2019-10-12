@@ -14,6 +14,7 @@ class PrimesTestCase(unittest.TestCase):
         (5,),
         (7,),
         (11,),
+        (19,),
     ])
     def test_is_prime(self, number):
         self.assertTrue(is_prime(number))

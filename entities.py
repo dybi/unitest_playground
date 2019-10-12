@@ -26,16 +26,19 @@ class Account:
         self._id = generate_id()
         self._balance = 0
 
-    @property
-    def balance(self) -> float:
-        return self._balance
+    # @property
+    # def balance(self) -> float:
+    #     return self._balance
+    #
+    # @balance.setter
+    # def balance(self, value: float) -> None:
+    #     current = self.balance
+    #     if current + value < 0:
+    #         raise ValueError("Balance cannot be negative")
+    #     self._balance = value
 
-    @balance.setter
-    def balance(self, value: float) -> None:
-        current = self.balance
-        if current + value < 0:
-            raise ValueError("Balance cannot be negative")
-        self._balance = value
+    def get_balance(self):
+        return self._balance
 
     def add_funds(self, value: float) -> None:
         # adding the balance in banking transaction system
@@ -56,10 +59,10 @@ class User:
     accounts: List[Account]
 
     def __init__(
-        self,
-        name: str,
-        age: int,
-        accounts: Optional[List[Account]] = None,
+            self,
+            name: str,
+            age: int,
+            accounts: Optional[List[Account]] = None,
     ) -> None:
         self.name = name
         self.age = age
@@ -68,6 +71,5 @@ class User:
     def give_me_the_money(self) -> float:
         available_funds = 0.0
         for account in self.accounts:
-            available_funds += account.balance
+            available_funds += account.get_balance()
         return available_funds
-
